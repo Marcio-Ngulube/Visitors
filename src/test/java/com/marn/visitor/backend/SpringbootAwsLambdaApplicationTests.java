@@ -1,4 +1,4 @@
-package com.javatechie.aws.lambda;
+package com.marn.visitor.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
