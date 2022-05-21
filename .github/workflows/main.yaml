@@ -19,11 +19,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
       - name: checks jar file
-        run: ls .
+        run: ls /target
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r ./java.zip -i ./target/*SNAPSHOT-aws.jar
+          args: zip -qq -r ./java.zip ./target/*SNAPSHOT-aws*.jar
       - name: default deploy
         uses: appleboy/lambda-action@master
         with:
