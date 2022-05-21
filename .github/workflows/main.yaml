@@ -28,7 +28,7 @@ jobs:
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r ./java.zip ./target/springboot-aws-lambda-0.0.1-SNAPSHOT-aws.jar
+          args: zip -qq -r ./java.zip ./target/springboot-aws-lambda-thesis-0-0-9-aws.jar
       - name: default deploy
         uses: appleboy/lambda-action@master
         with:
@@ -36,4 +36,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_LAMBDA_SECRET_ACCESS_KEY }}
           aws_region: us-east-1
           function_name: ${{ secrets.AWS_FUNCTION }}
-          zip_file: ./target/springboot-aws-lambda-0.0.1-SNAPSHOT-aws.jar
+          zip_file: ./target/springboot-aws-lambda-thesis-0-0-9-aws.jar
