@@ -18,9 +18,9 @@ jobs:
           distribution: 'adopt'
       - name: Replace credentials
         run: |
-          sed -i 's/INFORMACAO/${{ secrets.TESTE_CHANGE }}/g' teste.txt
+          sed -i 's/Marcio/${{ secrets.TESTE_CHANGE }}/g' ./src/main/java/com/javatechie/aws/lambda/respository/OrderDao.java
       - name: to see text
-        run: cat teste.txt
+        run: cat ./src/main/java/com/javatechie/aws/lambda/respository/OrderDao.java
       - name: Build with Maven
         run: mvn clean package
       - name: zip
