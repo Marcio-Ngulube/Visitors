@@ -16,10 +16,13 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: Replace credentials
+        run: |
+          sed -i 's/INFORMACAO/${{ secrets.TESTE_CHANGE }}/g' teste.txt
+      - name: to see text
+        run: cat teste.txt
       - name: Build with Maven
         run: mvn clean package
-      - name: checks jar file
-        run: ls ./target
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
