@@ -18,6 +18,8 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn clean package
+      - name: checks jar file
+        run: ls .
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
