@@ -54,7 +54,7 @@ public class SpringbootAwsLambdaApplication {
 
         //order.getName().equals(requestEvent.getQueryStringParameters().get("orderName"))
 
-
+        try{
 
         PersonRepository personRepository=new PersonRepository();
 
@@ -88,7 +88,10 @@ public class SpringbootAwsLambdaApplication {
             else
                 result.put("stringparameters","Vazio");
 */
-
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println(result);
         return result;
 
 
@@ -100,13 +103,14 @@ public class SpringbootAwsLambdaApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(SpringbootAwsLambdaApplication.class, args);
+        System.out.println(" This is the work test");
         /*APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent= new APIGatewayProxyRequestEvent();
         Map <String,String> stringStringMap= new HashMap<>();
         stringStringMap.put("method","getNumberOfVisits");
         stringStringMap.put("value","53");
         apiGatewayProxyRequestEvent.setQueryStringParameters(stringStringMap);
-       System.out.println(new SpringbootAwsLambdaApplication().handleRequest(apiGatewayProxyRequestEvent));
-        */
+       System.out.println(new SpringbootAwsLambdaApplication().handleRequest(apiGatewayProxyRequestEvent));*/
+
     }
 
 }

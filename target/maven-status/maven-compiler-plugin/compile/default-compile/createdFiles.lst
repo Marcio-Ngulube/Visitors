@@ -1,4 +1,0 @@
-com\marn\visitor\backend\entity\Person.class
-com\marn\visitor\backend\SpringbootAwsLambdaApplication.class
-com\marn\visitor\backend\OrderHandler.class
-com\marn\visitor\backend\repository\PersonRepository.class
