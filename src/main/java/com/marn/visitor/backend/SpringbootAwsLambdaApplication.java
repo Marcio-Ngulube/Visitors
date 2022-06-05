@@ -72,15 +72,18 @@ public class SpringbootAwsLambdaApplication {
 
             }else if (method.equals("findPersonByPersonId"))
                 result.put("getQueryStringParameters","Find Person: "+input.getQueryStringParameters().get("value"));
-            else if (method.equals("registerVisitor"))
-                result.put("getQueryStringParameters","Register Visitor: "+personRepository.registerVisitor(
+            else if (method.equals("registerVisitor")) {
+                result.put("getQueryStringParameters", "Register Visitor: " + personRepository.registerVisitor(
                         input.getQueryStringParameters().get("value"))
                 );
+                long personVisits=personRepository.getNumberOfRegister();
+                result.put("visitor_register_num",personVisits);
+            }
         }
 
         } catch (Exception e){
             System.out.println(e.getMessage());
-            result.put("getQueryStringParameters",e.getMessage());
+            result.put("exception",e.getCause());
         }
         System.out.println(result);
         return result;

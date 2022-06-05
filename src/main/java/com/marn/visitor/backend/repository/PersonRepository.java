@@ -92,8 +92,6 @@ public class PersonRepository {
 
 
         Person person=mapper.load(Person.class, PERSON_ID);
-        person.setCountRegisters(person.getCountRegisters()+1);
-        editPerson(person);
         return person.getCountRegisters();
     }
 
