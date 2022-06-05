@@ -1,13 +1,6 @@
 package com.marn.visitor.backend;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
-import com.amazonaws.services.dynamodbv2.xspec.S;
+
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.marn.visitor.backend.repository.PersonRepository;
@@ -32,9 +25,6 @@ public class SpringbootAwsLambdaApplication {
     }
 
     public Map<String,Object> handleRequest(APIGatewayProxyRequestEvent input) {
-
-
-
 
 
         Map<String,Object> result = new HashMap<>();
@@ -65,46 +55,42 @@ public class SpringbootAwsLambdaApplication {
             result.put("getQueryStringParameters","Vazio Super irritante vazio");
         else{
             String method= input.getQueryStringParameters().get("method");
-            if (method.equals("getNumberOfVisits"))
-                result.put("getQueryStringParameters","Numero de Visitas: "+personRepository.getNumberOfVisits());
-            else if (method.equals("getVisitor"))
-                result.put("getQueryStringParameters","Nome do Visitante: "+personRepository.getVisitor(
+            if (method.equals("getNumberOfVisits")){
+                long personVisits=personRepository.getNumberOfVisits();
+                result.put("getQueryStringParameters","Numero de Visitas: "+personVisits);
+                result.put("number_of_visits",personVisits);
+            }
+            else if (method.equals("getVisitor")) {
+                String visitor_name= personRepository.getVisitor(
                         Integer.parseInt(input.getQueryStringParameters().get("value"))
-                        )
+                ).get("visitor").toString();
+                result.put("getQueryStringParameters", "Nome do Visitante: " +visitor_name
                 );
-            else if (method.equals("findPersonByPersonId"))
+                result.put("visitor_name",visitor_name);
+                long personVisits=personRepository.getNumberOfRegister();
+                result.put("visitor_register_num",personVisits);
+
+            }else if (method.equals("findPersonByPersonId"))
                 result.put("getQueryStringParameters","Find Person: "+input.getQueryStringParameters().get("value"));
             else if (method.equals("registerVisitor"))
                 result.put("getQueryStringParameters","Register Visitor: "+personRepository.registerVisitor(
                         input.getQueryStringParameters().get("value"))
                 );
-
         }
 
-/*
-            if (!input.getQueryStringParameters().get("getNumberOfVisits").isEmpty()) {
-                result.put("stringparameters","Numero de Visitas: "+personRepository.getNumberOfVisits());
-            }
-            else
-                result.put("stringparameters","Vazio");
-*/
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
         System.out.println(result);
         return result;
 
-
     }
-
-
-
 
     public static void main(String[] args) {
 
         SpringApplication.run(SpringbootAwsLambdaApplication.class, args);
-        System.out.println(" This is the work test");
-        /*APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent= new APIGatewayProxyRequestEvent();
+        /*System.out.println(" This is the work test");
+        APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent= new APIGatewayProxyRequestEvent();
         Map <String,String> stringStringMap= new HashMap<>();
         stringStringMap.put("method","getNumberOfVisits");
         stringStringMap.put("value","53");

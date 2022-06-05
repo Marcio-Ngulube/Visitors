@@ -7,13 +7,10 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.marn.visitor.backend.entity.Person;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,9 +44,9 @@ public class PersonRepository {
     //Setting an Person ID to only have an item, to reduce the size of dynamoDB
     private final String PERSON_ID="e1317c6a-2c93-4b6a-b5b5-6ff9510964e0";
 
-    private final String PROTOCOL="http://";
+    private final String PROTOCOL="VISITOR_PROTOCOL";
 
-    private final String DOMAIN_URL="localhost:5000";
+    private final String DOMAIN_URL="VISITOR_DOMAIN_URL";
 
     //
 
@@ -91,7 +88,14 @@ public class PersonRepository {
         return result;
     }
 
+    public long getNumberOfRegister() {
 
+
+        Person person=mapper.load(Person.class, PERSON_ID);
+        person.setCountRegisters(person.getCountRegisters()+1);
+        editPerson(person);
+        return person.getCountRegisters();
+    }
 
 
     public Person findPersonByPersonId(String personID) {
