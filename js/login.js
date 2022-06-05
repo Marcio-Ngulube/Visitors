@@ -18,7 +18,7 @@ function sayHello() {
 
 	if(code === key){
 	const xhttp = new XMLHttpRequest();
-		xhttp.open("GET",visitor_url+"?method=registerVisitor&&value="name+,true);
+		xhttp.open("GET",visitor_url+"?method=registerVisitor&&value="+name,true);
 		xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
 		//xhttp.setRequestHeader("accept", "*/*");
 		
