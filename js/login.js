@@ -62,16 +62,17 @@ function initial(){
 function setVisitorNumber(){
 
 	const xhttp = new XMLHttpRequest();
-		xhttp.open("GET",visitor_url+"?method=getNumberOfVisits",true);
+		xhttp.open("OPTIONS",visitor_url+"?method=getNumberOfVisits",true);
 		xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-		//xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xhttp.setRequestHeader("accept", "*/*");
 		
 		console.log("aguento");
 		
 		xhttp.onreadystatechange = function () {
 
 			 if (xhttp.readyState == XMLHttpRequest.DONE) {
-        			alert(xhttp.responseText);
+        			const objects = JSON.parse(this.responseText);
+        			document.getElementById("name").innerHTML = "Please Register, Visitor number: "+objects[getQueryStringParameters];
     		}
 			
 			/*if (xhttp.readyState === 4) {
