@@ -18,7 +18,7 @@ jobs:
           distribution: 'adopt'
       - name: Replace credentials
         run: |
-          sed -i 's/VISITOR_DOMAIN_URL/${{ secrets.VISITOR_DOMAIN_URL }}/g' ./src/main/java/com/marn/visitor/backend/repository/PersonRepository.java
+          sed -i "s/VISITOR_DOMAIN_URL/${{ secrets.VISITOR_DOMAIN_URL }}/g" ./src/main/java/com/marn/visitor/backend/repository/PersonRepository.java
           sed -i 's/DYNAMO_DB_SERVICE_ENDPOINT/${{ secrets.DYNAMO_DB_SERVICE_ENDPOINT }}/g' ./src/main/java/com/marn/visitor/backend/repository/PersonRepository.java
           sed -i 's/DYNAMO_DB_ACCESS_KEY/${{ secrets.DYNAMO_DB_ACCESS_KEY }}/g' ./src/main/java/com/marn/visitor/backend/repository/PersonRepository.java
           sed -i 's/DYNAMO_DB_SECRET_KEY/${{ secrets.DYNAMO_DB_SECRET_KEY }}/g' ./src/main/java/com/marn/visitor/backend/repository/PersonRepository.java
