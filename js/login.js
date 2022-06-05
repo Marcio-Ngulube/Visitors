@@ -28,6 +28,8 @@ function sayHello() {
 
 			 if (xhttp.readyState == XMLHttpRequest.DONE) {
         			localStorage["name_visitor"] = name;
+        			const objects = JSON.parse(this.responseText);
+        			localStorage["visitor_reg_number"] = objects['number_of_visits'];
         			window.location.href = "visitor_view.html";
     		}
 		};
@@ -58,7 +60,7 @@ function setVisitorNumber(){
 
 			 if (xhttp.readyState == XMLHttpRequest.DONE) {
         			const objects = JSON.parse(this.responseText);
-        			document.getElementById("name_visitor").innerHTML = "Please Register, Visitor number: "+objects['getQueryStringParameters'];
+        			document.getElementById("name_visitor").innerHTML = "Please Register, Visitor number: "+objects['number_of_visits'];
     		}
 		};
 

@@ -16,7 +16,7 @@ function sayHello() {
 function getVisitorNameAndRegNumber(){
 
 	const xhttp = new XMLHttpRequest();
-		xhttp.open("GET",visitor_url+"?method=getNumberOfVisits",true);
+		xhttp.open("GET",visitor_url+"?method=getVisitor&&value="+localStorage["visitor_reg_number"],true);
 		xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
 		
 		console.log("aguento");
