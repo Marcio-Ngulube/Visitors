@@ -16,42 +16,28 @@ function sayHello() {
 	var  name = document.loginForm.name.value;
 	var  code= document.loginForm.code.value;
 
+	if(code === key){
 	const xhttp = new XMLHttpRequest();
-	
-
-   /*
-	const xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://"+localStorage["ip"]+"/login",true);
-		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xhttp.open("GET",visitor_url+"?method=registerVisitor&&value="name+,true);
+		xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+		//xhttp.setRequestHeader("accept", "*/*");
 		
 		console.log("aguento");
 		
 		xhttp.onreadystatechange = function () {
-			if (xhttp.readyState === 4) {
-				const objects = JSON.parse(this.responseText);
-				console.log("nos ss"+xhttp.status);
-				if (objects['response_code'] === 200) {
-					console.log(objects);
-					localStorage["data"] = objects['token'];
-					var employees = localStorage["data"];
-					console.log("Sucesso lista de "+employees);
-					alert("Sucess");
-					localStorage["username"]=utilizador;
-					load_page();
-				} else {
-					consolee.log("Failed "+objects['descricao']);
-					alert("Failed "+objects['descricao']);
-				}
-			}
+
+			 if (xhttp.readyState == XMLHttpRequest.DONE) {
+        			localStorage["name_visitor"] = name;
+        			window.location.href = "visitor_view.html";
+    		}
 		};
-		
-		*/
+
+		xhttp.send('');
+
+		}
 }
 
-function load_page(){
-	
-window.location.href = "principal.html";
-};
+
 
 function initial(){
 
@@ -74,24 +60,6 @@ function setVisitorNumber(){
         			const objects = JSON.parse(this.responseText);
         			document.getElementById("name_visitor").innerHTML = "Please Register, Visitor number: "+objects['getQueryStringParameters'];
     		}
-			
-			/*if (xhttp.readyState === 4) {
-				const objects = JSON.parse(this.responseText);
-				console.log("nos ss"+xhttp.status);
-				console.log("devolve "+objects);
-				if (objects['response_code'] === 200) {
-					console.log("devolve "+objects);
-					/*localStorage["data"] = objects['token'];
-					var employees = localStorage["data"];
-					console.log("Sucesso lista de "+employees);
-					alert("Sucess");
-					localStorage["username"]=utilizador;
-					load_page();
-				} else {
-					console.log("Failed "+objects);
-					//alert("Failed "+objects['descricao']);
-				}
-			}*/
 		};
 
 		xhttp.send('');
