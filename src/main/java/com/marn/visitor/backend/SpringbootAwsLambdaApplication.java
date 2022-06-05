@@ -80,6 +80,7 @@ public class SpringbootAwsLambdaApplication {
 
         } catch (Exception e){
             System.out.println(e.getMessage());
+            result.put("getQueryStringParameters",e.getMessage());
         }
         System.out.println(result);
         return result;
