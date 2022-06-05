@@ -62,9 +62,9 @@ function initial(){
 function setVisitorNumber(){
 
 	const xhttp = new XMLHttpRequest();
-		xhttp.open("OPTIONS",visitor_url+"?method=getNumberOfVisits",true);
+		xhttp.open("GET",visitor_url+"?method=getNumberOfVisits",true);
 		xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-		xhttp.setRequestHeader("accept", "*/*");
+		//xhttp.setRequestHeader("accept", "*/*");
 		
 		console.log("aguento");
 		
