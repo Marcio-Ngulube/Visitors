@@ -72,7 +72,7 @@ function setVisitorNumber(){
 
 			 if (xhttp.readyState == XMLHttpRequest.DONE) {
         			const objects = JSON.parse(this.responseText);
-        			console.log(responseText);
+        			console.log(this.responseText);
         			console.log(objects);
         			document.getElementById("name").innerHTML = "Please Register, Visitor number: "+objects['getQueryStringParameters'];
     		}
