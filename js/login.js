@@ -31,7 +31,7 @@ function sayHello() {
         			response_data=this.responseText;
         			const objects = JSON.parse(response_data);
         			console.log(response_data);
-        			localStorage["visitor_reg_number"] = objects['number_of_visits'];
+        			localStorage["visitor_reg_number"] = objects['visitor_register_num'];
         			window.location.href = "visitor_view.html";
     		}
 		};
