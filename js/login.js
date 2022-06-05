@@ -28,7 +28,9 @@ function sayHello() {
 
 			 if (xhttp.readyState == XMLHttpRequest.DONE) {
         			localStorage["name_visitor"] = name;
-        			const objects = JSON.parse(this.responseText);
+        			response_data=this.responseText;
+        			const objects = JSON.parse(response_data);
+        			console.log(response_data);
         			localStorage["visitor_reg_number"] = objects['number_of_visits'];
         			window.location.href = "visitor_view.html";
     		}
